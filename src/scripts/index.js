@@ -24,24 +24,28 @@ let alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
 // DOM Variables
 let gameButton = document.getElementById("game-button"),
     playAgainButton = document.getElementById("play-again-button"),
-    guessingDiv = document.getElementById("guessing-div"),
     introDiv = document.getElementById("intro-div"),
     gameDiv = document.getElementById("game-div"),
+    hangerDiv = document.getElementById("hanger-div"),
+    guessesRemaining = hangerDiv.getElementsByTagName("p")[0],
+    guessingDiv = document.getElementById("guessing-div"),
     resultsDiv = document.getElementById("results-div"),
     lettersDiv = document.getElementById("letters-div"),
     letters = document.getElementById("letters-div").cloneNode(true),
     answersDiv = document.getElementById("answers-div"),
     answersLetters = document.getElementById("answers-div").cloneNode(true);
 
-introDiv.style.display = "none";
-resultsDiv.style.display = "block";
+// default display
+hangerDiv.style.display = "none";
+resultsDiv.style.display = "none";
 guessingDiv.style.display = "none";
-gameButton.style.display = "none"; // temporary, remove when done
 
 // make the play game button do something
 gameButton.addEventListener("click", function() {
+  introDiv.style.display = "none";
   gameButton.style.display = "none";
-  gameDiv.style.display = "block";
+  hangerDiv.style.display = "";
+  guessingDiv.style.display = "";
 });
 
 // alphabet generation
@@ -56,6 +60,7 @@ let wordToGuess = randomWords();
 answersDiv.innerHTML = "";
  console.log(wordToGuess);
 
+// MAIN GAME DRIVER
 // alphabet click action generation
 for (let letter in alphabet) {
   let letterToClick = document.getElementsByClassName("letter-box")[letter];
@@ -75,25 +80,31 @@ for (let letter in alphabet) {
       }
     }
 
+    // user guesses wrong
     if (!correctAnswer) {
       // add another guess if the type of is a string meaning it hasn't been guessed
       if (typeof(alphabet[letter]) === "string") {
         wrongUserGuesses++; 
+        if (wrongUserGuesses < 9) {
+          guessesRemaining.innerHTML = "Incorrect<br />Guesses<br />Remaining:<br />" +(8 - wrongUserGuesses);
         }
+      }
     } else if (correctLetters == parseInt(wordToGuess.length)) {
       guessingDiv.style.display = "none";
       resultsDiv.getElementsByTagName("h2")[0].innerText = wordToGuess;
-      resultsDiv.style.display = "block";
+      resultsDiv.style.display = "";
       console.log("winner!");
     }
 
     alphabet[letter] = 0; // zero out spot in alphabet
-    console.log("Wrong guessels: " + wrongUserGuesses);
-    console.log("Correct guesses: " + correctLetters);
 
-    // check if user has guessed wrong too many times
-    if (wrongUserGuesses > 10) {
-      console.log("You lost!");
+    // user losing scenario
+    if (wrongUserGuesses > 8) {
+      guessingDiv.style.display = "none";
+      resultsDiv.getElementsByTagName("p")[0].innerText = "Awwww, you took too many guesses! The word was: ";
+      resultsDiv.getElementsByTagName("h2")[0].innerText = wordToGuess;
+      resultsDiv.style.display = "inline-block";
+      console.log("loser!");
     }
 
     letterToClick.style.opacity = ".2";
@@ -107,6 +118,11 @@ for (let i = 0; i < wordToGuess.length; i++) {
   answersDiv.innerHTML += answersLetters.innerHTML;
   answersDiv.getElementsByTagName("p")[i].style.textIndent = "-9999px";
 }
+
+// play again button
+playAgainButton.addEventListener("click", function() {
+
+});
 
 function generateCountry() {
   let countryToGuess = randomCountry({full: true});

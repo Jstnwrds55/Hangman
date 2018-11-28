@@ -23,6 +23,7 @@ let alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
 
 // DOM Variables
 let gameButton = document.getElementById("game-button"),
+    playAgainButton = document.getElementById("play-again-button"),
     guessingDiv = document.getElementById("guessing-div"),
     introDiv = document.getElementById("intro-div"),
     gameDiv = document.getElementById("game-div"),
@@ -33,8 +34,8 @@ let gameButton = document.getElementById("game-button"),
     answersLetters = document.getElementById("answers-div").cloneNode(true);
 
 introDiv.style.display = "none";
-// resultsDiv.style.display = "inline-block";
-// guessingDiv.style.display = "none";
+resultsDiv.style.display = "block";
+guessingDiv.style.display = "none";
 gameButton.style.display = "none"; // temporary, remove when done
 
 // make the play game button do something

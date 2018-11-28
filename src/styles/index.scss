@@ -1,5 +1,116 @@
-$body-color: blue;
-
 body {
-  color: $body-color;
+  color: #6837c4;
+  background-color: #fcf7ff;
+  font-family: "Black Han Sans", sans-serif;
 }
+
+h1 {
+  // find a good font
+}
+
+h2 {
+  color: black;
+}
+
+#results-div p {
+  font-size: 30px;
+}
+
+#results-div h2 {
+  font-size: 60px;
+}
+
+#game-div {
+  overflow: auto;
+  display: inline-block;
+}
+
+#results-div {
+  border: 10px solid #6837c4;
+  position: relative;
+  display: none;
+  margin: auto;
+  width: 68%;
+  float: right;
+  height: 50%;
+  padding-top: 10%;
+  padding-bottom: 10%;
+  text-align: center;
+}
+
+#hanger-div {
+  width: 28%;
+  height: 100%;
+  margin: auto;
+  border: 10px solid #6837c4;
+  float: left;
+}
+
+#guessing-div {
+  float: right;
+  height: 80%;
+  width: 70%;
+  display: table-cell;
+}
+
+#letters-div {
+  padding: 5%;
+  height: 68%;
+  border: 10px solid #6837c4;
+  margin: auto;
+  text-align: center;
+  
+}
+
+.letter-box {
+  margin: auto;
+  border-radius: 20%;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 2%;
+  border: 5px solid #6837c4;
+  background-color: #d8a9ff;
+  display: inline-block;
+}
+
+.letter-box:hover {
+  background-color: #bfa4f3;
+  cursor: pointer;
+  -webkit-filter: brightness(80%);
+}
+
+.letter {
+  position: relative;
+  font-weight: bold;
+  font-size: 20px;
+  bottom: 13%;
+}
+
+#answers-div {
+  height: 50%;
+  margin: auto;
+  text-align: center;
+  border: 10px solid #6837c4;
+  padding: 5%;
+  margin-top: .2%;
+}
+
+.answer-letter {
+  padding-top: 5%;
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+  margin: auto;
+  display: inline-block;
+  padding-right: 1%;
+}
+
+.answer-letter-box {
+  border-bottom: 3px solid black;
+}
+
+.answer-letter p {
+  text-align: center;
+  color: black;
+}
+

@@ -46,6 +46,7 @@
     "webpack-merge": "^4.1.4"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.0.0"
+    "@babel/polyfill": "^7.0.0",
+    "random-words": "^1.1.0"
   }
 }
